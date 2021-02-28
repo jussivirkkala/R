@@ -12,31 +12,31 @@ Using [hs-koronavirus-avoindata.r](hs-koronavirus-avoindata.r)
 
 ```
 git add .
-git commit -m  "Update"
+git commit -a -m  "Update"
 ```
+
+![](hs-koronavirus-avoindata/tapaukset.gif)
 ![](tapaukset-Kaikki&#32;sairaanhoitopiirit.png)
 ![](tapaukset-HUS.png)
 ![](tapaukset-Varsinais-Suomi.png)
 ![](tapaukset-Pirkanmaa.png)
-
 ![](tapaukset-Kanta-Häme.png)
 ![](tapaukset-Päijät-Häme.png)
 ![](tapaukset-Kymenlaakso.png)
 ![](tapaukset-Etelä-Karjala.png)
 ![](tapaukset-Etelä-Savo.png)
-![](tapaukset-Ahvenanmaa.png)
 ![](tapaukset-Satakunta.png)
 ![](tapaukset-Itä-Savo.png)
-![](tapaukset-Pohjois-Karjala.png)
-![](tapaukset-Pohjois-Savo.png)
 ![](tapaukset-Keski-Suomi.png)
-![](tapaukset-Etelä-Pohjanmaa.png)
-![](tapaukset-Vaasa.png)
-![](tapaukset-Keski-Pohjanmaa.png)
 ![](tapaukset-Pohjois-Pohjanmaa.png)
-![](tapauksetKainuu.png)
+![](tapaukset-Vaasa.png)
+![](tapaukset-Kainuu.png)
+![](tapaukset-Pohjois-Savo.png)
+![](tapaukset-Etelä-Pohjanmaa.png)
 ![](tapaukset-Länsi-Pohja.png)
 ![](tapaukset-Lappi.png)
-![](tapaukset-Vaasa.png)
+![](tapaukset-Pohjois-Karjala.png)
+![](tapaukset-Keski-Pohjanmaa.png)
+![](tapaukset-Ahvenanmaa.png)
 
 End
