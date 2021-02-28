@@ -9,12 +9,11 @@ json<-fromJSON("https://w3qa5ydb4l.execute-api.eu-west-1.amazonaws.com/prod/proc
 ```
 
 
-![hs-koronavirus-avoindata](tapaukset-Kaikki sairaanhoitopiirit.png)
+![hs-koronavirus-avoindata](tapaukset-Kaikki&#32;sairaanhoitopiirit.png)
 
 
-![hs-koronavirus-avoindata](tapaukset-hus.png)
+![hs-koronavirus-avoindata](tapaukset-HUS.png)
+
+![hs-koronavirus-avoindata](tapaukset-Vaasa.png)
 
 End
-
-
- 
