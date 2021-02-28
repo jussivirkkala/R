@@ -34,21 +34,21 @@ y<-unlist(data[1])
 sum(y)-sum(y1)
 
 
-
 for (i in 1:length(json$confirmed)) {
   # Convert to frame
-  title=names(json$confirmed[i])
-  print(title)
+  title1=names(json$confirmed[i])
+  print(title1)
   data<-as.data.frame(json$confirmed[i])
   y<-unlist(data[1])
+  title2=paste(title1," ",Sys.Date()," N=",sum(y),sep="")
   
 
   # Plot
-  plot(y,type="l",lwd=2,ylab="Korona tapauksia",xlab="Päiviä 2020 alusta",main=title)
+  plot(y,type="l",lwd=2,ylab="Korona tapauksia",xlab="Päiviä 2020 alusta",main=title2)
 
   # Save
-  png(file=paste("tapaukset-",title,".png",sep=""),width=1000,heigh=500)
-  plot(y,type="l",lwd=2,ylab="Korona tapauksia",xlab="Päiviä 2020 alusta",main=title)
+  png(file=paste("tapaukset-",title1,".png",sep=""),width=1000,heigh=500)
+  plot(y,type="l",lwd=2,ylab="Korona tapauksia",xlab="Päiviä 2020 alusta",main=title2)
   dev.off()
 }
 
