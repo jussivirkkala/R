@@ -27,17 +27,29 @@ save(json,file=paste("hs-koronavirus-avoindata-",Sys.Date(),".RData",sep=""))
 
 # Get all cases
 data<-as.data.frame(json$confirmed[22])
-summary(data)
 y<-unlist(data[1])
+
 
 # New case
 sum(y)-sum(y1)
 
-# Plot
 
-png(file="tapaukset-kaikki.png",width=1000,heigh=500)
-plot(y,type="l",lwd=2,ylab="Korona tapauksia",xlab="Päiviä 2020 alusta")
-dev.off()
 
+for (i in 1:length(json$confirmed)) {
+  # Convert to frame
+  title=names(json$confirmed[i])
+  print(title)
+  data<-as.data.frame(json$confirmed[i])
+  y<-unlist(data[1])
+  
+
+  # Plot
+  plot(y,type="l",lwd=2,ylab="Korona tapauksia",xlab="Päiviä 2020 alusta",main=title)
+
+  # Save
+  png(file=paste("tapaukset-",title,".png",sep=""),width=1000,heigh=500)
+  plot(y,type="l",lwd=2,ylab="Korona tapauksia",xlab="Päiviä 2020 alusta",main=title)
+  dev.off()
+}
 
 
