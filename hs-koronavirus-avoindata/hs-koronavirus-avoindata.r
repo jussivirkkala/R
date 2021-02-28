@@ -1,5 +1,4 @@
 
-
 # Install package once.
 
 install.packages("jsonlite")
@@ -16,7 +15,6 @@ data1<-as.data.frame(json1$confirmed[22])
 summary(data1)
 y1<-unlist(data1[1])
 
-
 # Load data from hs-avoindata
 
 json<-fromJSON("https://w3qa5ydb4l.execute-api.eu-west-1.amazonaws.com/prod/processedThlData")
@@ -29,10 +27,8 @@ save(json,file=paste("hs-koronavirus-avoindata-",Sys.Date(),".RData",sep=""))
 data<-as.data.frame(json$confirmed[22])
 y<-unlist(data[1])
 
-
 # New case
 sum(y)-sum(y1)
-
 
 for (i in 1:length(json$confirmed)) {
   # Convert to frame
@@ -41,7 +37,6 @@ for (i in 1:length(json$confirmed)) {
   data<-as.data.frame(json$confirmed[i])
   y<-unlist(data[1])
   title2=paste(title1," ",Sys.Date()," N=",sum(y),sep="")
-  
 
   # Plot
   plot(y,type="l",lwd=2,ylab="Korona tapauksia",xlab="Päiviä 2020 alusta",main=title2)
@@ -52,4 +47,4 @@ for (i in 1:length(json$confirmed)) {
   dev.off()
 }
 
-
+# End
