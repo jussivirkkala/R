@@ -1,9 +1,20 @@
 # Koronavirus avoindata
 
-This 
+Reading https://github.com/HS-Datadesk/koronavirus-avoindata COVID-19 cases in Finland and plots some graphs.
 
-![hs-koronavirus-avoindata](hs-koronavirus-avoindata/hs-koronavirus-avoindata.png)
+```
+# Load data from hs-avoindata
 
-https://github.com/HS-Datadesk/koronavirus-avoindata
+json<-fromJSON("https://w3qa5ydb4l.execute-api.eu-west-1.amazonaws.com/prod/processedThlData")
+```
 
- End
+
+![hs-koronavirus-avoindata](tapaukset-kaikki.png)
+
+
+![hs-koronavirus-avoindata](tapaukset-hus.png)
+
+End
+
+
+ 
