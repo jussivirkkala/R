@@ -4,11 +4,13 @@
 
 # Install package once.
 
-install.packages("jsonlite")
+# install.packages("jsonlite")
+# install.packages("magick")
 
 # Using jsonlite
 
 library(jsonlite)
+library(magick)
 
 # Load previous data
 
@@ -33,6 +35,7 @@ y<-unlist(data[1])
 # New case
 sum(y)-sum(y1)
 
+files<-c()
 for (i in 1:length(json$confirmed)) {
   # Convert to frame
   data<-as.data.frame(json$confirmed[i])
@@ -42,16 +45,29 @@ for (i in 1:length(json$confirmed)) {
   
   
   title1=names(json$confirmed[i])
-  print(title1)
   title2=paste(title1," ",Sys.Date()," N=",sum(y),". Tänään ",sum(y)-sum(y1),".",sep="")
 
   # Plot
   plot(y,type="l",lwd=2,ylab="Korona tapauksia",xlab="Päiviä 2020 alusta",main=title2)
 
   # Save
-  png(file=paste("tapaukset-",title1,".png",sep=""),width=1000,heigh=500)
+  title1<-paste("tapaukset-",title1,".png",sep="")
+  files[i]<-title1
+  
+  png(file=title1,width=1000,heigh=500)
   plot(y,type="l",lwd=2,ylab="Korona tapauksia",xlab="Päiviä 2020 alusta",main=title2)
   dev.off()
+
+  
 }
+
+# Create gif
+imgs <- files
+img_list <- lapply(imgs, image_read)
+img_joined <- image_join(img_list)
+img_animated <- image_animate(img_joined, fps = 1)
+
+img_animated
+image_write(image = img_animated,path = "tapaukset.gif")
 
 # End
