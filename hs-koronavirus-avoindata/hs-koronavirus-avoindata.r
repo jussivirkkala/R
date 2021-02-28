@@ -1,4 +1,7 @@
 
+# @jussivirkkala
+# 2021-02-28 First version
+
 # Install package once.
 
 install.packages("jsonlite")
@@ -32,11 +35,15 @@ sum(y)-sum(y1)
 
 for (i in 1:length(json$confirmed)) {
   # Convert to frame
-  title1=names(json$confirmed[i])
-  print(title1)
   data<-as.data.frame(json$confirmed[i])
   y<-unlist(data[1])
-  title2=paste(title1," ",Sys.Date()," N=",sum(y),sep="")
+  data1<-as.data.frame(json1$confirmed[i])
+  y1<-unlist(data1[1])
+  
+  
+  title1=names(json$confirmed[i])
+  print(title1)
+  title2=paste(title1," ",Sys.Date()," N=",sum(y),". Tänään ",sum(y)-sum(y1),".",sep="")
 
   # Plot
   plot(y,type="l",lwd=2,ylab="Korona tapauksia",xlab="Päiviä 2020 alusta",main=title2)
