@@ -12,7 +12,7 @@ Using [hs-koronavirus-avoindata.r](hs-koronavirus-avoindata.r)
 
 ```
 git add .
-git commit -m .png)Update.png)
+git commit -m  "Update"
 ```
 ![](tapaukset-Kaikki&#32;sairaanhoitopiirit.png)
 ![](tapaukset-HUS.png)
