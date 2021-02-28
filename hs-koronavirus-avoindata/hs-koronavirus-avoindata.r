@@ -7,7 +7,7 @@ install.packages("jsonlite")
 
 library(jsonlite)
 
-# Load previous
+# Load previous data
 
 load(paste("hs-koronavirus-avoindata-",Sys.Date()-1,".Rdata",sep=""))
 json1<-json;
