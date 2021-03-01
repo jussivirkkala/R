@@ -16,12 +16,13 @@ library(magick)
 # Load previous data
 
 load(paste("hs-koronavirus-avoindata-",Sys.Date()-1,".Rdata",sep=""))
-processedThlData1<processedThlData;
-data1<-as.data.frame(processedThlData$confirmed[22])
+processedThlData1<-processedThlData
+data1<-as.data.frame(processedThlData1$confirmed[22])
 summary(data1)
 y1<-unlist(data1[1])
+sum(y1)
 
-# Load data from hs-avoindata
+sumY# Load data from hs-avoindata
 
 processedThlData<-fromJSON("https://w3qa5ydb4l.execute-api.eu-west-1.amazonaws.com/prod/processedThlData")
 finnishCoronaHospitalData<-fromJSON("https://w3qa5ydb4l.execute-api.eu-west-1.amazonaws.com/prod/finnishCoronaHospitalData")
@@ -29,7 +30,6 @@ thlTestData<-fromJSON("https://w3qa5ydb4l.execute-api.eu-west-1.amazonaws.com/pr
 hcdTestData<-fromJSON("https://w3qa5ydb4l.execute-api.eu-west-1.amazonaws.com/prod/hcdTestData")
 finnishVaccinationData<-fromJSON("https://w3qa5ydb4l.execute-api.eu-west-1.amazonaws.com/prod/finnishVaccinationData")
 
-  
 # Save json with ISO8601 date
 
 save(processedThlData,finnishCoronaHospitalData,thlTestData,hcdTestData,finnishVaccinationData,
@@ -47,22 +47,23 @@ for (i in 1:length(processedThlData$confirmed)) {
   # Convert to frame
   data<-as.data.frame(processedThlData$confirmed[i])
   y<-unlist(data[1])
-  data1<-as.data.frame(json1$confirmed[i])
+  data1<-as.data.frame(processedThlData1$confirmed[i])
   y1<-unlist(data1[1])
   
   
   title1=names(processedThlData$confirmed[i])
-  title2=paste(title1," ",Sys.Date()," N=",sum(y),". Tänään ",sum(y)-sum(y1),".",sep="")
+  title2=paste(title1," ",Sys.Date()," N=",sum(y),". Lisäys ",sum(y)-sum(y1),".",sep="")
 
-  # Plot
-  plot(y,type="l",lwd=2,ylab="Korona tapauksia",xlab="Päiviä 2020 alusta",main=title2)
 
   # Save
   title1<-paste("tapaukset-",title1,".png",sep="")
   files[i]<-title1
   
   png(file=title1,width=1000,heigh=500)
-  plot(y,type="l",lwd=2,ylab="Korona tapauksia",xlab="Päiviä 2020 alusta",main=title2)
+  par(mfrow=c(2,1))
+  plot(y[1:(length(y)-3)],type="l",lwd=2,ylab="Korona tapauksia",xlab="Päiviä 2020 alusta",main=title2)
+  abline(v=c((length(y)-3-27),(length(y)-3)))
+  plot(y[(length(y)-3-27):(length(y)-3)],type="b",lwd=2,ylab="Korona tapauksia",xlab="Viimeiset 28 päivää")
   dev.off()
 
   
@@ -78,5 +79,10 @@ img_animated <- image_animate(img_joined, fps = 1)
 img_animated
 image_write(image = img_animated,path = "tapaukset.gif")
 
+# git add .
 # git commit -a -m "Update"
+
+paste("Uusia COVID-19 tapauksia ",Sys.Date()," n=",sum(y)-sum(y1),". Yhteensä N=",sum(y)," Kuvista uusimmat 4 päivää jätetty pois https://github.com/jussivirkkala/R/tree/main/hs-koronavirus-avoindata",sep="")
+
+
 # End
