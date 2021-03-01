@@ -47,4 +47,5 @@ Graphs has last 4 days removed. See also gif as last image.
 
 Gif version.
 ![](tapaukset.gif)
+
 End
