@@ -16,18 +16,24 @@ library(magick)
 # Load previous data
 
 load(paste("hs-koronavirus-avoindata-",Sys.Date()-1,".Rdata",sep=""))
-json1<-json;
-data1<-as.data.frame(json1$confirmed[22])
+processedThlData1<processedThlData;
+data1<-as.data.frame(processedThlData$confirmed[22])
 summary(data1)
 y1<-unlist(data1[1])
 
 # Load data from hs-avoindata
 
 processedThlData<-fromJSON("https://w3qa5ydb4l.execute-api.eu-west-1.amazonaws.com/prod/processedThlData")
+finnishCoronaHospitalData<-fromJSON("https://w3qa5ydb4l.execute-api.eu-west-1.amazonaws.com/prod/finnishCoronaHospitalData")
+thlTestData<-fromJSON("https://w3qa5ydb4l.execute-api.eu-west-1.amazonaws.com/prod/thlTestData")
+hcdTestData<-fromJSON("https://w3qa5ydb4l.execute-api.eu-west-1.amazonaws.com/prod/hcdTestData")
+finnishVaccinationData<-fromJSON("https://w3qa5ydb4l.execute-api.eu-west-1.amazonaws.com/prod/finnishVaccinationData")
 
+  
 # Save json with ISO8601 date
 
-save(processedThlData,file=paste("hs-koronavirus-avoindata-",Sys.Date(),".RData",sep=""))
+save(processedThlData,finnishCoronaHospitalData,thlTestData,hcdTestData,finnishVaccinationData,
+     file=paste("hs-koronavirus-avoindata-",Sys.Date(),".RData",sep=""))
 
 # Get all cases
 data<-as.data.frame(processedThlData$confirmed[22])
