@@ -1,5 +1,6 @@
 
 # @jussivirkkala
+# 2021-03-01 Subplot
 # 2021-02-29 Renamed processedThlData, Adding finnishCoronaHospitalData
 # 2021-02-28 First version
 
@@ -22,7 +23,7 @@ summary(data1)
 y1<-unlist(data1[1])
 sum(y1)
 
-sumY# Load data from hs-avoindata
+# Load data from hs-avoindata
 
 processedThlData<-fromJSON("https://w3qa5ydb4l.execute-api.eu-west-1.amazonaws.com/prod/processedThlData")
 finnishCoronaHospitalData<-fromJSON("https://w3qa5ydb4l.execute-api.eu-west-1.amazonaws.com/prod/finnishCoronaHospitalData")
@@ -65,8 +66,6 @@ for (i in 1:length(processedThlData$confirmed)) {
   abline(v=c((length(y)-3-27),(length(y)-3)))
   plot(y[(length(y)-3-27):(length(y)-3)],type="b",lwd=2,ylab="Korona tapauksia",xlab="Viimeiset 28 päivää")
   dev.off()
-
-  
 }
 
 # Create gif
@@ -86,3 +85,4 @@ paste("Uusia COVID-19 tapauksia ",Sys.Date()," n=",sum(y)-sum(y1),". Yhteensä N=
 
 
 # End
+
