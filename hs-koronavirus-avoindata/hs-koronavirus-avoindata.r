@@ -47,7 +47,7 @@ for (i in 1:length(names)) {
   hospitalised=region$totalHospitalised;
   inICU=region$inIcu;
 
-  title2=paste(n," ",Sys.Date()," Hospitalized ",hospitalized[length(hospitalized)]," in ICU ",inICU[length(inICU)],sep="")
+  title2=paste(n," ",Sys.Date()," Hospitalized ",hospitalised[length(hospitalised)]," in ICU ",inICU[length(inICU)],sep="")
   png(file=paste("Hospital-",n,".png",sep=""),width=1000,heigh=500)
   plot(hospitalised,type="l",xlab = "Days from 2020",ylab="Hospitalized (in ICU)",main =title2 )
   lines(inICU)
@@ -71,7 +71,7 @@ for (i in 1:length(processedThlData$confirmed)) {
   
   
   title1=names(processedThlData$confirmed[i])
-  title2=paste(title1," ",Sys.Date()," N=",sum(y),". Lisï¿½ys ",sum(y)-sum(y1),".",sep="")
+  title2=paste(title1," ",Sys.Date()," N=",sum(y),". Lisäys ",sum(y)-sum(y1),".",sep="")
 
 
   # Save
@@ -81,9 +81,9 @@ for (i in 1:length(processedThlData$confirmed)) {
   png(file=title1,width=1000,heigh=500)
   yl=c(0,max(y[1:(length(y)-3)]))
   par(mfrow=c(2,1))
-  plot(y[1:(length(y)-3)],type="l",lwd=2,ylab="Korona tapauksia",xlab="Pï¿½iviï¿½ 2020 alusta",main=title2,ylim=yl)
+  plot(y[1:(length(y)-3)],type="l",lwd=2,ylab="Korona tapauksia",xlab="Päiviä 2020 alusta",main=title2,ylim=yl)
   abline(v=c((length(y)-3-28),(length(y)-3)),lwd=2)
-  plot(y[(length(y)-3-28):(length(y)-3)],type="b",lwd=2,ylab="Korona tapauksia",xlab="Viimeiset 28 pï¿½ivï¿½ï¿½ (poislukien uusimmat 4)",ylim=yl, new=FALSE)
+  plot(y[(length(y)-3-28):(length(y)-3)],type="b",lwd=2,ylab="Korona tapauksia",xlab="Viimeiset 28 päivää (poislukien uusimmat 4)",ylim=yl, new=FALSE)
   abline(v=c(1,8,15,22,29),lwd=2)
   dev.off()
 }
@@ -103,8 +103,8 @@ image_write(image = img_animated,path = "tapaukset.gif")
 
 paste("Uusia COVID-19 tapauksia ",Sys.Date()," n=",sum(y)-sum(y1),". Yhteensï¿½ N=",sum(y)," Kuvista uusimmat 4 pï¿½ivï¿½ï¿½ jï¿½tetty pois https://github.com/jussivirkkala/R/tree/main/hs-koronavirus-avoindata",sep="")
 
-git add .
-git commit -a -m "Update"
+# git add .
+# git commit -a -m "Update"
 
 # End
 
