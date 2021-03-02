@@ -40,7 +40,7 @@ save(processedThlData,finnishCoronaHospitalData,thlTestData,hcdTestData,finnishV
 
 # Get all cases
 confirmed<-as.data.frame(processedThlData$confirmed[22])
-y<-confimed$Kaikki.sairaanhoitopiirit.value
+y<-confirmed$Kaikki.sairaanhoitopiirit.value
 
 # New case
 sum(y)-sum(y1)
@@ -82,11 +82,11 @@ img_animated <- image_animate(img_joined, fps = 1)
 img_animated
 image_write(image = img_animated,path = "tapaukset.gif")
 
-# git add .
-# git commit -a -m "Update"
 
 paste("Uusia COVID-19 tapauksia ",Sys.Date()," n=",sum(y)-sum(y1),". Yhteensä N=",sum(y)," Kuvista uusimmat 4 päivää jätetty pois https://github.com/jussivirkkala/R/tree/main/hs-koronavirus-avoindata",sep="")
 
+git add .
+git commit -a -m "Update"
 
 # End
 
