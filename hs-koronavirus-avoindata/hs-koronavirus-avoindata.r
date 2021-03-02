@@ -36,9 +36,11 @@ finnishVaccinationData<-fromJSON("https://w3qa5ydb4l.execute-api.eu-west-1.amazo
 save(processedThlData,finnishCoronaHospitalData,thlTestData,hcdTestData,finnishVaccinationData,
      file=paste("hs-koronavirus-avoindata-",Sys.Date(),".RData",sep=""))
 
+# 
+
 # Get all cases
-data<-as.data.frame(processedThlData$confirmed[22])
-y<-unlist(data[1])
+confirmed<-as.data.frame(processedThlData$confirmed[22])
+y<-confimed$Kaikki.sairaanhoitopiirit.value
 
 # New case
 sum(y)-sum(y1)
@@ -47,9 +49,9 @@ files<-c()
 for (i in 1:length(processedThlData$confirmed)) {
   # Convert to frame
   data<-as.data.frame(processedThlData$confirmed[i])
-  y<-unlist(data[1])
+  y<-data$Kaikki.sairaanhoitopiirit.value
   data1<-as.data.frame(processedThlData1$confirmed[i])
-  y1<-unlist(data1[1])
+  y1<-data1$Kaikki.sairaanhoitopiirit.value
   
   
   title1=names(processedThlData$confirmed[i])
