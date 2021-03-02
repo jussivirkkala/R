@@ -4,15 +4,12 @@
 # 2021-02-29 Renamed processedThlData, Adding finnishCoronaHospitalData
 # 2021-02-28 First version
 
-# Install package once.
+# Install packages once.
 
-# install.packages("jsonlite")
-# install.packages("magick")
+install.packages("jsonlite")
+install.packages("magick")
+install.packages("ggplot2")
 
-# Using jsonlite
-
-library(jsonlite)
-library(magick)
 
 # Load previous data
 
@@ -24,6 +21,8 @@ y1<-unlist(data1[1])
 sum(y1)
 
 # Load data from hs-avoindata
+
+library(jsonlite)
 
 processedThlData<-fromJSON("https://w3qa5ydb4l.execute-api.eu-west-1.amazonaws.com/prod/processedThlData")
 finnishCoronaHospitalData<-fromJSON("https://w3qa5ydb4l.execute-api.eu-west-1.amazonaws.com/prod/finnishCoronaHospitalData")
@@ -39,6 +38,21 @@ save(processedThlData,finnishCoronaHospitalData,thlTestData,hcdTestData,finnishV
 # https://dplyr.tidyverse.org/
 
 library(dplyr)
+
+files<-c()
+names=c("Finland","HYKS","Other than HYKS","TAYS","OYS","KYS","TYKS")
+for (i in 1:length(names)) {
+  n=names[i]
+  region<-finnishCoronaHospitalData$hospitalised %>% filter(area==n)
+  hospitalised=region$totalHospitalised;
+  inICU=region$inIcu;
+
+  title2=paste(n," ",Sys.Date()," Hospitalized ",hospitalized[length(hospitalized)]," in ICU ",inICU[length(inICU)],sep="")
+  png(file=paste("Hospital-",n,".png",sep=""),width=1000,heigh=500)
+  plot(hospitalised,type="l",xlab = "Days from 2020",ylab="Hospitalized (in ICU)",main =title2 )
+  lines(inICU)
+  dev.off()
+}
 
 # Get all cases
 confirmed<-as.data.frame(processedThlData$confirmed[22])
@@ -75,6 +89,8 @@ for (i in 1:length(processedThlData$confirmed)) {
 }
 
 # Create gif
+
+library(magick)
 
 imgs <- files
 img_list <- lapply(imgs, image_read)
