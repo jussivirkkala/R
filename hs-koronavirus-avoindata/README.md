@@ -20,8 +20,16 @@ Using [hs-koronavirus-avoindata.r](hs-koronavirus-avoindata.r). See also R Markd
 git add .
 git commit -m  "Update"
 ```
+## In hospital
 
-## Daily cases in differente regions
+![](hospital-Finland.png)
+![](hospital-HYKS.png)
+![](hospital-OYS.png)
+![](hospital-TYKS.png)
+![](hospital-TAYS.png)
+
+
+## Daily cases in different regions
 
 Graphs has last 4 days removed. See also gif as last image.
 
