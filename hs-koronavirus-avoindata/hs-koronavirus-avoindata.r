@@ -61,10 +61,12 @@ for (i in 1:length(processedThlData$confirmed)) {
   files[i]<-title1
   
   png(file=title1,width=1000,heigh=500)
+  yl=c(0,max(y[1:(length(y)-3)]))
   par(mfrow=c(2,1))
-  plot(y[1:(length(y)-3)],type="l",lwd=2,ylab="Korona tapauksia",xlab="Päiviä 2020 alusta",main=title2)
-  abline(v=c((length(y)-3-27),(length(y)-3)))
-  plot(y[(length(y)-3-27):(length(y)-3)],type="b",lwd=2,ylab="Korona tapauksia",xlab="Viimeiset 28 päivää")
+  plot(y[1:(length(y)-3)],type="l",lwd=2,ylab="Korona tapauksia",xlab="Päiviä 2020 alusta",main=title2,ylim=yl)
+  abline(v=c((length(y)-3-28),(length(y)-3)),lwd=2)
+  plot(y[(length(y)-3-28):(length(y)-3)],type="b",lwd=2,ylab="Korona tapauksia",xlab="Viimeiset 28 päivää (poislukien uusimmat 4)",ylim=yl, new=FALSE)
+  abline(v=c(1,8,15,22,29),lwd=2)
   dev.off()
 }
 
