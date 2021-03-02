@@ -2,7 +2,6 @@
 
 Analyzing (https://github.com/HS-Datadesk/koronavirus-avoindata) data about COVID-19 in Finland.
 
-
 ```
 # Load data from hs-avoindata
 
@@ -20,7 +19,7 @@ Using [hs-koronavirus-avoindata.r](hs-koronavirus-avoindata.r). See also R Markd
 git add .
 git commit -m  "Update"
 ```
-## In hospital
+## Hospitalized
 
 ![](hospital-Finland.png)
 ![](hospital-HYKS.png)
@@ -28,8 +27,7 @@ git commit -m  "Update"
 ![](hospital-TYKS.png)
 ![](hospital-TAYS.png)
 
-
-## Daily cases in different regions
+## Daily cases
 
 Graphs has last 4 days removed. See also gif as last image.
 
