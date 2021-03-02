@@ -36,7 +36,9 @@ finnishVaccinationData<-fromJSON("https://w3qa5ydb4l.execute-api.eu-west-1.amazo
 save(processedThlData,finnishCoronaHospitalData,thlTestData,hcdTestData,finnishVaccinationData,
      file=paste("hs-koronavirus-avoindata-",Sys.Date(),".RData",sep=""))
 
-# 
+# https://dplyr.tidyverse.org/
+
+library(dplyr)
 
 # Get all cases
 confirmed<-as.data.frame(processedThlData$confirmed[22])
