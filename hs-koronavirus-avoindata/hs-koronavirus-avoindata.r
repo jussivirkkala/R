@@ -40,7 +40,7 @@ save(processedThlData,finnishCoronaHospitalData,thlTestData,hcdTestData,finnishV
 library(dplyr)
 
 files<-c()
-names=c("Finland","HYKS","Other than HYKS","TAYS","OYS","KYS","TYKS")
+names=c("Finland","HYKS","TAYS","OYS","KYS","TYKS")
 for (i in 1:length(names)) {
   n=names[i]
   region<-finnishCoronaHospitalData$hospitalised %>% filter(area==n)
@@ -101,7 +101,7 @@ img_animated
 image_write(image = img_animated,path = "tapaukset.gif")
 
 
-paste("Uusia COVID-19 tapauksia ",Sys.Date()," n=",sum(y)-sum(y1),". Yhteensï¿½ N=",sum(y)," Kuvista uusimmat 4 pï¿½ivï¿½ï¿½ jï¿½tetty pois https://github.com/jussivirkkala/R/tree/main/hs-koronavirus-avoindata",sep="")
+paste("Uusia COVID-19 tapauksia ",Sys.Date()," n=",sum(y)-sum(y1),". Yhteensä N=",sum(y)," Kuvista uusimmat 4 päivää on jätetty pois https://github.com/jussivirkkala/R/tree/main/hs-koronavirus-avoindata",sep="")
 
 # git add .
 # git commit -a -m "Update"
