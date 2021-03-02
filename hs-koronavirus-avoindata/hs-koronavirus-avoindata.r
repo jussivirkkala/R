@@ -48,10 +48,10 @@ sum(y)-sum(y1)
 files<-c()
 for (i in 1:length(processedThlData$confirmed)) {
   # Convert to frame
-  data<-as.data.frame(processedThlData$confirmed[i])
-  y<-data$Kaikki.sairaanhoitopiirit.value
-  data1<-as.data.frame(processedThlData1$confirmed[i])
-  y1<-data1$Kaikki.sairaanhoitopiirit.value
+  data<-as.data.frame(as.data.frame(processedThlData$confirmed[i]))
+  y<-unlist(data[1])
+  data1<-as.data.frame(as.data.frame(processedThlData1$confirmed[i]))
+  y1<-unlist(data1[1])
   
   
   title1=names(processedThlData$confirmed[i])
