@@ -49,7 +49,7 @@ for (i in 1:length(names)) {
 
   title2=paste(n," ",Sys.Date()," Hospitalized ",hospitalised[length(hospitalised)]," in ICU ",inICU[length(inICU)],sep="")
   png(file=paste("Hospital-",n,".png",sep=""),width=1000,heigh=500)
-  plot(hospitalised,type="l",xlab = "Days from 2020",ylab="Hospitalized (in ICU)",main =title2 )
+  plot(hospitalised,type="l",xlab = "Entries",ylab="Hospitalized (in ICU)",main =title2 )
   lines(inICU)
   dev.off()
 }
@@ -105,6 +105,7 @@ paste("Uusia COVID-19 tapauksia ",Sys.Date()," n=",sum(y)-sum(y1),". Yhteensä N=
 
 # git add .
 # git commit -a -m "Update"
+# git push
 
 # End
 
