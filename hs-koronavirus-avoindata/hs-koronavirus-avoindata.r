@@ -12,9 +12,9 @@
 
 # Install packages once.
 
-install.packages("jsonlite")
-install.packages("dplyr")
-install.packages("magick")
+# install.packages("jsonlite")
+# install.packages("dplyr")
+# install.packages("magick")
 
 
 # Load previous data
@@ -108,7 +108,7 @@ img_list <- lapply(imgs, image_read)
 img_joined <- image_join(img_list)
 img_animated <- image_animate(img_joined, fps = 0.5)
 img_animated
-image_write(image = img_animated,path = "tapaukset-270.gif")
+image_write(image = img_animated,path = "tapaukset.gif")
 
 
 paste("Uusia COVID-19 tapauksia ",Sys.Date()," n=",sum(y)-sum(y1),". Yhteensä N=",sum(y)," Kuvista uusimmat 4 päivää on jätetty pois https://github.com/jussivirkkala/R/tree/main/hs-koronavirus-avoindata",sep="")
