@@ -114,7 +114,7 @@ image_write(image = img_animated,path = "tapaukset.gif")
 paste("Uusia COVID-19 tapauksia ",Sys.Date()," n=",sum(y)-sum(y1),". Yhteens‰ N=",sum(y)," Kuvista uusimmat 4 p‰iv‰‰ on j‰tetty pois https://github.com/jussivirkkala/R/tree/main/hs-koronavirus-avoindata",sep="")
 
 # git add .
-# git commit -a -m "Update"
+# git commit -m "Update"
 # git push
 
 # End
