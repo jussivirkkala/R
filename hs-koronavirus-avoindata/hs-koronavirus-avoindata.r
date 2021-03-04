@@ -102,14 +102,13 @@ for (i in 1:length(processedThlData$confirmed)) {
 # Create gif
 
 library(magick)
-
 imgs <- files
 img_list <- lapply(imgs, image_read)
+# img_list <- lapply(img_list,image_rotate,270)
 img_joined <- image_join(img_list)
-img_animated <- image_animate(img_joined, fps = 1)
-
+img_animated <- image_animate(img_joined, fps = 0.5)
 img_animated
-image_write(image = img_animated,path = "tapaukset.gif")
+image_write(image = img_animated,path = "tapaukset-270.gif")
 
 
 paste("Uusia COVID-19 tapauksia ",Sys.Date()," n=",sum(y)-sum(y1),". Yhteensä N=",sum(y)," Kuvista uusimmat 4 päivää on jätetty pois https://github.com/jussivirkkala/R/tree/main/hs-koronavirus-avoindata",sep="")
