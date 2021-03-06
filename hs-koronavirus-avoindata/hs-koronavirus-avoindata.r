@@ -22,9 +22,7 @@
 load(paste("hs-koronavirus-avoindata-",Sys.Date()-1,".RData",sep=""))
 processedThlData1<-processedThlData
 data1<-as.data.frame(processedThlData1$confirmed[22])
-summary(data1)
 y1<-unlist(data1[1])
-sum(y1)
 
 # Load data from hs-avoindata
 
@@ -35,6 +33,7 @@ finnishCoronaHospitalData<-fromJSON("https://w3qa5ydb4l.execute-api.eu-west-1.am
 thlTestData<-fromJSON("https://w3qa5ydb4l.execute-api.eu-west-1.amazonaws.com/prod/thlTestData")
 hcdTestData<-fromJSON("https://w3qa5ydb4l.execute-api.eu-west-1.amazonaws.com/prod/hcdTestData")
 finnishVaccinationData<-fromJSON("https://w3qa5ydb4l.execute-api.eu-west-1.amazonaws.com/prod/finnishVaccinationData")
+
 
 # Save json with ISO8601 date
 
@@ -58,7 +57,8 @@ for (i in 1:length(names)) {
 
   title2=paste(n," ",Sys.Date()," Sairaalassa ",hospitalised[length(hospitalised)],
                " (",hospitalised[length(hospitalised)]-hospitalised[length(hospitalised)-1],")",
-               " teholla ",inICU[length(inICU)]," (",inICU[length(inICU)]-inICU[length(inICU)-1],")",sep="")
+               ", joista teholla ",inICU[length(inICU)]," (",inICU[length(inICU)]-inICU[length(inICU)-1],")",sep="")
+  print(title2)
   par(mfrow=c(2,1))
   plot(hospitalised,type="l",xlab = "Tietoja",ylab="Sairaalassa, teholla",main =title2 )
   lines(inICU)
@@ -71,8 +71,6 @@ for (i in 1:length(names)) {
 confirmed<-as.data.frame(processedThlData$confirmed[22])
 y<-confirmed$Kaikki.sairaanhoitopiirit.value
 
-# New case
-sum(y)-sum(y1)
 
 files<-c()
 for (i in 1:length(processedThlData$confirmed)) {
@@ -84,7 +82,8 @@ for (i in 1:length(processedThlData$confirmed)) {
   
   title1=names(processedThlData$confirmed[i])
   title2=paste(title1," ",Sys.Date()," N=",sum(y),". Lisäys ",sum(y)-sum(y1),".",sep="")
-
+  print(title2)
+  
   # Save
   title1<-paste("tapaukset-",title1,".png",sep="")
   files[i]<-title1
@@ -98,6 +97,9 @@ for (i in 1:length(processedThlData$confirmed)) {
   abline(v=c(1,8,15,22,29),lwd=2)
   dev.off()
 }
+
+# New cases
+sum(y)-sum(y1)
 
 # Create gif
 
