@@ -1,5 +1,6 @@
 
 # @jussivirkkala
+# 2021-03-08 Date from data
 # 2021-03-03 Renamed axis, COVID-19
 # 2021-03-01 Subplot
 # 2021-02-29 Renamed processedThlData, Adding finnishCoronaHospitalData
@@ -44,6 +45,7 @@ save(processedThlData,finnishCoronaHospitalData,thlTestData,hcdTestData,finnishV
 
 library(dplyr)
 
+print("Sairaalassa:")
 files<-c()
 names=c("Finland","HYKS","TAYS","OYS","KYS","TYKS")
 for (i in 1:length(names)) {
@@ -55,7 +57,8 @@ for (i in 1:length(names)) {
   
   png(file=paste("Hospital-",n,".png",sep=""),width=1000,heigh=500)
 
-  title2=paste(n," ",Sys.Date()," Sairaalassa ",hospitalised[length(hospitalised)],
+  last=substr(region$date[length(region$date)],1,10)
+  title2=paste(n," ",last," Sairaalassa ",hospitalised[length(hospitalised)],
                " (",hospitalised[length(hospitalised)]-hospitalised[length(hospitalised)-1],")",
                ", joista teholla ",inICU[length(inICU)]," (",inICU[length(inICU)]-inICU[length(inICU)-1],")",sep="")
   print(title2)
@@ -81,7 +84,11 @@ for (i in 1:length(processedThlData$confirmed)) {
   y1<-unlist(data1[1])
   
   title1=names(processedThlData$confirmed[i])
-  title2=paste(title1," ",Sys.Date()," N=",sum(y),". Lisäys ",sum(y)-sum(y1),".",sep="")
+  
+  # Date from data
+  last<-unlist(data[3])
+  last=substr(last[length(last)],1,10)
+  title2=paste(title1," ",last," N=",sum(y),". Lisäys ",sum(y)-sum(y1),".",sep="")
   print(title2)
   
   # Save
