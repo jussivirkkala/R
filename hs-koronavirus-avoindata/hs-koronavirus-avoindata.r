@@ -35,14 +35,12 @@ thlTestData<-fromJSON("https://w3qa5ydb4l.execute-api.eu-west-1.amazonaws.com/pr
 hcdTestData<-fromJSON("https://w3qa5ydb4l.execute-api.eu-west-1.amazonaws.com/prod/hcdTestData")
 finnishVaccinationData<-fromJSON("https://w3qa5ydb4l.execute-api.eu-west-1.amazonaws.com/prod/finnishVaccinationData")
 
-
 # Save json with ISO8601 date
 
 save(processedThlData,finnishCoronaHospitalData,thlTestData,hcdTestData,finnishVaccinationData,
      file=paste("hs-koronavirus-avoindata-",Sys.Date(),".RData",sep=""))
 
 # https://dplyr.tidyverse.org/
-
 library(dplyr)
 
 print("Sairaalassa:")
@@ -56,7 +54,6 @@ for (i in 1:length(names)) {
   deadDiff<-c(0,diff(region$dead))
   
   png(file=paste("Hospital-",n,".png",sep=""),width=1000,heigh=500)
-
   last=substr(region$date[length(region$date)],1,10)
   title2=paste(n," ",last," Sairaalassa ",hospitalised[length(hospitalised)],
                " (",hospitalised[length(hospitalised)]-hospitalised[length(hospitalised)-1],")",
@@ -74,8 +71,8 @@ for (i in 1:length(names)) {
 confirmed<-as.data.frame(processedThlData$confirmed[22])
 y<-confirmed$Kaikki.sairaanhoitopiirit.value
 
-
 files<-c()
+print("Sairaanhoitopiirit:")
 for (i in 1:length(processedThlData$confirmed)) {
   # Convert to frame
   data<-as.data.frame(as.data.frame(processedThlData$confirmed[i]))
@@ -115,10 +112,9 @@ imgs <- files
 img_list <- lapply(imgs, image_read)
 # img_list <- lapply(img_list,image_rotate,270)
 img_joined <- image_join(img_list)
-img_animated <- image_animate(img_joined, fps = 0.5)
+img_animated <- image_animate(img_joined, fps = 1)
 img_animated
 image_write(image = img_animated,path = "tapaukset.gif")
-
 
 paste("Uusia COVID-19 tapauksia ",Sys.Date()," n=",sum(y)-sum(y1),". Yhteensä N=",sum(y)," Kuvista uusimmat 4 päivää on jätetty pois https://github.com/jussivirkkala/R/tree/main/hs-koronavirus-avoindata",sep="")
 
@@ -127,4 +123,3 @@ paste("Uusia COVID-19 tapauksia ",Sys.Date()," n=",sum(y)-sum(y1),". Yhteensä N=
 # git push
 
 # End
-
