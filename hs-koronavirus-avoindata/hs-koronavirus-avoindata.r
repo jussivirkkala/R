@@ -1,10 +1,11 @@
 
 # @jussivirkkala
-# 2021-03-08 Date from data
-# 2021-03-03 Renamed axis, COVID-19
-# 2021-03-01 Subplot
-# 2021-02-29 Renamed processedThlData, Adding finnishCoronaHospitalData
-# 2021-02-28 First version
+# 2021-03-14 Added /max.
+# 2021-03-08 Date from data.
+# 2021-03-03 Renamed axis, COVID-19.
+# 2021-03-01 Subplot.
+# 2021-02-29 Renamed processedThlData, Adding finnishCoronaHospitalData.
+# 2021-02-28 First version.
 
 # R version 4.0.4 (2021-02-15)
 # Platform: x86_64-w64-mingw32/x64 (64-bit)
@@ -55,9 +56,9 @@ for (i in 1:length(names)) {
   
   png(file=paste("Hospital-",n,".png",sep=""),width=1000,heigh=500)
   last=substr(region$date[length(region$date)],1,10)
-  title2=paste(n," ",last," Sairaalassa ",hospitalised[length(hospitalised)],
+  title2=paste0(n," ",last," Sairaalassa ",hospitalised[length(hospitalised)],"/",max(hospitalised),
                " (",hospitalised[length(hospitalised)]-hospitalised[length(hospitalised)-1],")",
-               ", joista teholla ",inICU[length(inICU)]," (",inICU[length(inICU)]-inICU[length(inICU)-1],")",sep="")
+               ", joista teholla ",inICU[length(inICU)],"/",max(inICU)," (",inICU[length(inICU)]-inICU[length(inICU)-1],")")
   print(title2)
   par(mfrow=c(2,1))
   plot(hospitalised,type="l",xlab = "Tietoja",ylab="Sairaalassa, teholla",main =title2 )
