@@ -7,13 +7,15 @@ Analyzing (https://github.com/HS-Datadesk/koronavirus-avoindata) data about COVI
 
 processedThlData<-fromJSON("https://w3qa5ydb4l.execute-api.eu-west-1.amazonaws.com/prod/processedThlData")
 finnishCoronaHospitalData<-fromJSON("https://w3qa5ydb4l.execute-api.eu-west-1.amazonaws.com/prod/finnishCoronaHospitalData")
+
+# Not currently used
+
 thlTestData<-fromJSON("https://w3qa5ydb4l.execute-api.eu-west-1.amazonaws.com/prod/thlTestData")
 hcdTestData<-fromJSON("https://w3qa5ydb4l.execute-api.eu-west-1.amazonaws.com/prod/hcdTestData")
 finnishVaccinationData<-fromJSON("https://w3qa5ydb4l.execute-api.eu-west-1.amazonaws.com/prod/finnishVaccinationData")
 
 ```
-
-Using [hs-koronavirus-avoindata.r](hs-koronavirus-avoindata.r). See also R Markdown version
+Using [hs-koronavirus-avoindata.r](hs-koronavirus-avoindata.r). 
 
 ```
 git add .
@@ -54,7 +56,7 @@ Graphs has last 4 days removed. See also gif as last image.
 ![](tapaukset-Keski-Pohjanmaa.png)
 ![](tapaukset-Ahvenanmaa.png)
 
-Gif version.
+## Gif version
 ![](tapaukset.gif)
 
 End

@@ -22,7 +22,9 @@
 # Load previous data
 
 load(paste("hs-koronavirus-avoindata-",Sys.Date()-1,".RData",sep=""))
-processedThlData1<-processedThlData
+processedThlData1 <- processedThlData
+thlTestData1 <- thlTestData
+hcdTestData1 <- hcdTestData
 data1<-as.data.frame(processedThlData1$confirmed[22])
 y1<-unlist(data1[1])
 
@@ -40,6 +42,14 @@ finnishVaccinationData<-fromJSON("https://w3qa5ydb4l.execute-api.eu-west-1.amazo
 
 save(processedThlData,finnishCoronaHospitalData,thlTestData,hcdTestData,finnishVaccinationData,
      file=paste("hs-koronavirus-avoindata-",Sys.Date(),".RData",sep=""))
+
+# 
+print("Testejä")
+for (i in 1:length(hcdTestData)) {
+  region <- as.data.frame(hcdTestData[i])
+  region1 <- as.data.frame(hcdTestData1[i])
+  print(region[1]-region1[1])
+}
 
 # https://dplyr.tidyverse.org/
 library(dplyr)
@@ -76,7 +86,7 @@ files<-c()
 print("Sairaanhoitopiirit:")
 for (i in 1:length(processedThlData$confirmed)) {
   # Convert to frame
-  data<-as.data.frame(as.data.frame(processedThlData$confirmed[i]))
+  data<-as.data.frame(processedThlData$confirmed[i])
   y<-unlist(data[1])
   data1<-as.data.frame(as.data.frame(processedThlData1$confirmed[i]))
   y1<-unlist(data1[1])
