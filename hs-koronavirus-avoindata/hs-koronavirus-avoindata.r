@@ -15,6 +15,7 @@
 # Install packages once.
 
 # install.packages("jsonlite")
+# install.packages("stringr")
 # install.packages("dplyr")
 # install.packages("magick")
 
@@ -28,7 +29,7 @@ hcdTestData1 <- hcdTestData
 data1<-as.data.frame(processedThlData1$confirmed[22])
 y1<-unlist(data1[1])
 
-# Load data from hs-avoindata
+# Load data from hs-avoindatastr
 
 library(jsonlite)
 
@@ -48,13 +49,34 @@ print("Testejä")
 for (i in 1:length(hcdTestData)) {
   region <- as.data.frame(hcdTestData[i])
   region1 <- as.data.frame(hcdTestData1[i])
-  print(region[1]-region1[1])
+#  print(region[1]-region1[1])
 }
 
 # https://dplyr.tidyverse.org/
 library(dplyr)
+library(stringr)
 
-print("Sairaalassa:")
+n="Finland"
+region <- finnishCoronaHospitalData$hospitalised %>% filter(area==n)
+hospitalised <- region$totalHospitalised
+inICU <-region$inIcu
+dead <- region$dead
+
+# Vuosi sitten
+
+s <- Sys.Date()
+s <- gsub("2021","2020",s)
+print(sprintf("Vuosi sitten %s:",s))
+i <- which(str_detect(region$date,s))
+if (length(i)>0) {
+print(sprintf("Sairaalassa %i Tehohoidossa %i Kuolleita %i",hospitalised[i],inICU[i],dead[i]))
+}
+region <- processedThlData$confirmed$`Kaikki sairaanhoitopiirit`
+i <- which(str_detect(region$date,s))
+print(sprintf("Tapauksia n=%i",region$value[i]))
+
+
+2print("Sairaalassa:")
 files<-c()
 names=c("Finland","HYKS","TAYS","OYS","KYS","TYKS")
 for (i in 1:length(names)) {
