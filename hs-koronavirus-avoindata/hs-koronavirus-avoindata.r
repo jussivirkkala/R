@@ -76,7 +76,7 @@ i <- which(str_detect(region$date,s))
 print(sprintf("Tapauksia n=%i",region$value[i]))
 
 
-2print("Sairaalassa:")
+print("Sairaalassa:")
 files<-c()
 names=c("Finland","HYKS","TAYS","OYS","KYS","TYKS")
 for (i in 1:length(names)) {
