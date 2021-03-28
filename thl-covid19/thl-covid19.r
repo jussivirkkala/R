@@ -11,6 +11,12 @@ library(rjstat)
 url_base <- "https://sampo.thl.fi/pivot/prod/fi/epirapo/covid19case/fact_epirapo_covid19case.json"
 request <- "?row=hcdmunicipality2020-445268L&column=dateweek20200101-509030"
 
+hae_kunnat.sh:uri=
+  "https://sampo.thl.fi/pivot/prod/fi/epirapo/covid19case/fact_epirapo_covid19case?
+
+row=hcdmunicipality2020-445268L&fz&fo&column=measure-444833"
+
+
 # Died
 https://sampo.thl.fi/pivot/prod/fi/epirapo/covid19case/fact_epirapo_covid19case.json?row=dateweek20200101-508500L&column=measure-492118&fz&fo
 
