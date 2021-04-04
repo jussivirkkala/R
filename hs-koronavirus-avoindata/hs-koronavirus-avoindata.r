@@ -1,4 +1,6 @@
 
+# Read hs-koronavirus-avoindata
+# 
 # @jussivirkkala
 # 2021-03-14 Added /max.
 # 2021-03-08 Date from data.
@@ -9,15 +11,21 @@
 
 # R version 4.0.4 (2021-02-15)
 # Platform: x86_64-w64-mingw32/x64 (64-bit)
-# Running under: Windows 10 x64 (build 19042)
+# Running under: Windows 10 x64 19042.870
 
 
 # Install packages once.
-
+#
 # install.packages("jsonlite")
 # install.packages("stringr")
 # install.packages("dplyr")
 # install.packages("magick")
+
+
+# set path
+
+library("rstudioapi")
+setwd(dirname(getActiveDocumentContext()$path))
 
 
 # Load previous data
@@ -111,7 +119,7 @@ for (i in 1:length(processedThlData$confirmed)) {
   data<-as.data.frame(processedThlData$confirmed[i])
   y<-unlist(data[1])
   data1<-as.data.frame(as.data.frame(processedThlData1$confirmed[i]))
-  y1<-unlist(data1[1])
+  y1 <- unlist(data1[1])
   
   title1=names(processedThlData$confirmed[i])
   
@@ -151,6 +159,8 @@ image_write(image = img_animated,path = "tapaukset.gif")
 
 paste("Uusia COVID-19 tapauksia ",Sys.Date()," n=",sum(y)-sum(y1),". Yhteensä N=",sum(y)," Kuvista uusimmat 4 päivää on jätetty pois https://github.com/jussivirkkala/R/tree/main/hs-koronavirus-avoindata",sep="")
 
+# In Terminal
+#
 # git add .
 # git commit -m "Update"
 # git push
