@@ -2,6 +2,7 @@
 # Read hs-koronavirus-avoindata
 # 
 # @jussivirkkala
+# 2021-04-05 Change of path
 # 2021-03-14 Added /max.
 # 2021-03-08 Date from data.
 # 2021-03-03 Renamed axis, COVID-19.
@@ -70,7 +71,7 @@ hospitalised <- region$totalHospitalised
 inICU <-region$inIcu
 dead <- region$dead
 
-# Vuosi sitten
+# year ago
 
 s <- Sys.Date()
 s <- gsub("2021","2020",s)
@@ -83,6 +84,15 @@ region <- processedThlData$confirmed$`Kaikki sairaanhoitopiirit`
 i <- which(str_detect(region$date,s))
 print(sprintf("Tapauksia n=%i",region$value[i]))
 
+# plot beginning of two years
+
+i <- which(str_detect(region$date,"2021-01-01"))
+j=length(region$date)-i-4
+plot(region$value[i:(i+j)], type="l", col="red", xlab = "Päiviä vuoden alusta 2020/2021",
+     ylab = "Diagnosoituja tapauksia")
+yl=c(0,max(region$value[i:(i+j)]))
+par(new=TRUE)
+plot(region$value[1:(1+j)], type="l", col="blue", axes = FALSE , ylab = "", xlab ="", ylim = yl)
 
 print("Sairaalassa:")
 files<-c()
