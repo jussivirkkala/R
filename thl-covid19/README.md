@@ -1,6 +1,6 @@
 # thl-covid19
 
-Reading https://thl.fi/en/web/thlfi-en/statistics/statistical-databases/open-data/confirmed-corona-cases-in-finland-covid-19- data. Notice that  Finnish version of the same page contains much less examples. 
+Reading https://thl.fi/en/web/thlfi-en/statistics/statistical-databases/open-data/confirmed-corona-cases-in-finland-covid-19- data. Notice that  Finnish version of the same page contains less examples. 
 
 ## Version
 <li>2021-03-28 First version.
@@ -8,7 +8,7 @@ Reading https://thl.fi/en/web/thlfi-en/statistics/statistical-databases/open-dat
 
 ## Examples 
 
-With help of https://wwww.twitter.com/kooran below some example queries.  By default it opens THl cube graphical interface. By replacing case? with case.json? or case.csv? you can open json or csv file.
+With help of https://wwww.twitter.com/kooran below some example queries.  By default it opens THL cube graphical interface. By replacing case? with case.json? or case.csv? you can open json or csv file.
 
 Weekly new cases, population, tests in municipality and hospital districts. Tests are only reported on hospital district levels.
 

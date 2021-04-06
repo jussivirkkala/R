@@ -115,6 +115,7 @@ for (i in 1:length(names)) {
   lines(inICU)
   title3=paste("Kuolemia ",region$dead[length(region$dead)]," (",region$dead[length(region$dead)]-region$dead[length(region$dead)-1],")",sep="")
   plot(deadDiff,type="l",xlab="Tietoja",ylab="Muutos kuolemissa",main=title3)
+  print(title3)
   dev.off()
 }
 
