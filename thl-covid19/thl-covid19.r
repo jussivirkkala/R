@@ -9,6 +9,11 @@
 # install.packages("jsonlite")
 
 
+# set path
+library("rstudioapi")
+setwd(dirname(getActiveDocumentContext()$path))
+
+
 # Load data from thl
 
 library(jsonlite)
