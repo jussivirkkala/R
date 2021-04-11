@@ -53,7 +53,7 @@ finnishVaccinationData<-fromJSON("https://w3qa5ydb4l.execute-api.eu-west-1.amazo
 save(processedThlData,finnishCoronaHospitalData,thlTestData,hcdTestData,finnishVaccinationData,
      file=paste("hs-koronavirus-avoindata-",Sys.Date(),".RData",sep=""))
 
-# 
+    # 
 for (i in 1:length(hcdTestData)) {
   region <- as.data.frame(hcdTestData[i])
   region1 <- as.data.frame(hcdTestData1[i])
