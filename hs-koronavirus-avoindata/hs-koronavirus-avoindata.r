@@ -2,6 +2,7 @@
 # Read hs-koronavirus-avoindata
 # 
 # @jussivirkkala
+# 2021-04-24 Date from last entry
 # 2021-04-07 Changes in week and two week
 # 2021-04-05 Change of path
 # 2021-03-14 Added /max.
@@ -50,10 +51,14 @@ finnishVaccinationData<-fromJSON("https://w3qa5ydb4l.execute-api.eu-west-1.amazo
 
 # Save json with ISO8601 date
 
-save(processedThlData,finnishCoronaHospitalData,thlTestData,hcdTestData,finnishVaccinationData,
-     file=paste("hs-koronavirus-avoindata-",Sys.Date(),".RData",sep=""))
 
-    # 
+last=Sys.Date()
+last=tail(processedThlData$confirmed[22]$`Kaikki sairaanhoitopiirit`$date, n=1)
+last=substr(last,1,10)
+save(processedThlData,finnishCoronaHospitalData,thlTestData,hcdTestData,finnishVaccinationData,
+file=paste("hs-koronavirus-avoindata-",last,".RData",sep=""))
+
+   
 for (i in 1:length(hcdTestData)) {
   region <- as.data.frame(hcdTestData[i])
   region1 <- as.data.frame(hcdTestData1[i])
@@ -86,15 +91,16 @@ region <- processedThlData$confirmed$`Kaikki sairaanhoitopiirit`
 i <- which(str_detect(region$date,s))
 writeLines(sprintf("Tapauksia n=%i",region$value[i]))
 
-# plot beginning of two years
+# plot beginning of two years, start from wednesdays which is 2020-01-01
+
 
 i <- which(str_detect(region$date,"2021-01-01"))
 j=length(region$date)-i-4
-plot(region$value[i:(i+j)], type="l", col="red", xlab = "Päiviä vuoden alusta 2020/2021",
-     ylab = "Diagnosoituja tapauksia")
 yl=c(0,max(region$value[i:(i+j)]))
+plot(region$value[i:(i+j)], type="l", col="red", xlab = "Päiviä vuoden alusta 2020/2021a",
+     ylab = "Diagnosoituja tapauksia", xylim=yl)
 par(new=TRUE)
-plot(region$value[1:(1+j)], type="l", col="blue", axes = FALSE , ylab = "", xlab ="", ylim = yl)
+plot(region$value[1:(1+j)], type="l", ylim = yl, col="blue", ylab="", xlab ="")
 
 writeLines("\nSairaalassa, kuolleita (muutos):")
 files<-c()
@@ -158,8 +164,7 @@ for (i in 1:length(processedThlData$confirmed)) {
 
 # Viikko sitten
 
-s=Sys.Date()-7
-load(paste0("hs-koronavirus-avoindata-",s,".RData"))
+load(paste0("hs-koronavirus-avoindata-",Sys.Date()-7,".RData"))
 processedThlData1 <- processedThlData
 data1<-as.data.frame(processedThlData1$confirmed[22])
 y7<-unlist(data1[1])
